@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import axios from "axios";
 import {keccak256} from "js-sha3";
+import "../../styles/inputs.css";
+import "../../styles/newswrite.css"
 
 function NewsWrite() {
   const [reporter, setReporter] = useState("");
@@ -43,14 +45,16 @@ function NewsWrite() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="newsWriteForm" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="inputParty">Party:</label>
-          <input type="text" id="inputParty" value={party} onChange={(e) => setParty(e.target.value)} required />
+          <input className="inputFields" type="text" id="inputParty" 
+            value={party} onChange={(e) => setParty(e.target.value)} required />
         </div>
         <div>
           <label htmlFor="inputNews">News:</label>
-          <textarea type="text" id="inputNews" value={newsText} onChange={(e) => setNewsText(e.target.value)} required >
+          <textarea className="textAreaClass" type="text" id="inputNews" 
+            value={newsText} onChange={(e) => setNewsText(e.target.value)} required >
           </textarea>
         </div>
         <div>
@@ -59,23 +63,25 @@ function NewsWrite() {
         </div>
         <div>
           <label htmlFor="inputSource">Source link:</label>
-          <input type="text" id="inputSource" value={source} onChange={(e) => setSource(e.target.value)} />
+          <input className="inputFields" type="text" id="inputSource" 
+            value={source} onChange={(e) => setSource(e.target.value)} required />
         </div>
         <div>
           <label htmlFor="inputLatitude">Latitude:</label>
-          <input type="number" step="0.000001" id="inputLatitude" 
-            value={latitude} onChange={(e) => setLatitude(e.target.value)} />
+          <input className="inputFields" type="number" step="0.000001" id="inputLatitude"
+            value={latitude} onChange={(e) => setLatitude(e.target.value)} required  />
         </div>
         <div>
           <label htmlFor="inputLongitude">Longitude:</label>
-          <input type="number" step="0.000001" id="inputLongitude" 
-            value={longitude} onChange={(e) => setLongitude(e.target.value)} />
+          <input className="inputFields" type="number" step="0.000001" id="inputLongitude"
+            value={longitude} onChange={(e) => setLongitude(e.target.value)} required />
         </div>
         <div>
           <label htmlFor="inputReporter">Reporter:</label>
-          <input type="text" id="inputReporter" value={reporter} onChange={(e) => setReporter(e.target.value)} required />
+          <input className="inputFields" type="text" id="inputReporter" 
+            value={reporter} onChange={(e) => setReporter(e.target.value)} required />
         </div>
-        <button type="submit">Save News</button>
+        <button className="button7007" type="submit">Save News</button>
       </form>
       <div>{resultArea}</div>
     </div>

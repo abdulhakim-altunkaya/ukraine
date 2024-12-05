@@ -1,0 +1,70 @@
+
+    /*<input className="inputFields" />*/
+    .inputFields {
+        height: 27px;
+        width: 150px;
+        margin-left: 12px;
+        border-radius: 5px;
+      }
+      .inputFields:focus {
+        background-color: lightsalmon;
+        color:black;
+      }
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      /* Firefox */
+      input[type=number] {
+        -moz-appearance: textfield;
+      }
+
+      
+    /*<button class="button7007">COPY ME</button>*/
+    @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap'); /*Dosis*/
+    .button7007 {
+      height: 40px;
+      width: 140px;
+      font-size: 20px;
+      font-family: 'Dosis', sans-serif;
+      background-color: aquamarine;
+      padding: 4px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition-duration: 0.3s;
+    }
+    .button7007:hover {
+      background-color: lightseagreen;
+      font-weight: bolder;
+    }
+    .button7007:active {
+      box-shadow: 0 2px #666;
+      transform: translateY(2px);
+      box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+    }
+
+    .textAreaClass {
+        width: 200px;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        background-color: #f8f8f8;
+        border-radius: 5px;
+        display: block;
+        margin-bottom: 10px;
+        font-family: "Maven Pro";
+        font-size: 16px;
+        color: #000;  /* Make the text color black for legibility */
+        opacity: 1;   /* Ensure full opacity for the text */
+    }
+    
+    /* Style for the placeholder text */
+    .textAreaClass::placeholder {
+        color: #004040;  /* Darker color for legibility */
+        font-style: italic;  /* Italicize if needed */
+        font-size: 16px;  /* Adjust font size */
+        opacity: 1;  /* Make sure the placeholder is fully opaque */
+    }   

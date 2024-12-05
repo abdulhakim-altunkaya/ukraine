@@ -1,0 +1,9 @@
+.newsWriteForm{
+    width: 50%;
+}
+
+.newsWriteForm div {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
