@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const axios = require("axios");
 const path = require("path");
-const dotenv = require("dotenv");
 //Load database connection string from dotenv file
 const dotenv = require("dotenv");
 dotenv.config();
@@ -12,7 +11,7 @@ const {pool} = require("./db");
 const useragent = require("useragent");
 //we need to allow cross origin requests between different ports.
 //In other words when in development, backend is on 5000 and
-//frontend is on 3000. This causes an issue and to overcome
+//frontend is on 3000. This causes an issue and to overcome this
 //issue we are using cors. When in production,
 //both backend and frontend are served under same domain. So, 
 //no need for cors when in production.
@@ -28,6 +27,31 @@ app.use(express.json());
 //******************************UNCOMMENT WHEN IN PRODUCTION***********************************************************************************
 /* //Then go to server.js file and make sure you serve static files from build directory:
 app.use(express.static(path.join(__dirname, 'client/build'))); */
+
+app.post("/api/save-news", async (req, res) => {
+  const newsObject = req.body;
+  try {
+    const newsData = {
+      party: parseInt(newsObject.party, 10), // Convert party to an integer (int8)
+      news: newsObject.newsText.trim(),     // Ensure text values are trimmed
+      date: newsObject.datetime.trim(),     // Ensure date is trimmed (still stored as text in DB)
+      source: newsObject.source.trim(),     // Trim text for cleanliness
+      latitude: parseFloat(newsObject.latitude), // Convert latitude to a float (float8)
+      longitude: parseFloat(newsObject.longitude), // Convert longitude to a float (float8)
+    };
+    //save visitor to database
+    client = await pool.connect();
+    const result = await client.query(
+      `INSERT INTO ukraine_news (party, news, date, source, latitude, longitude) 
+      VALUES ($1, $2, $3, $4, $5, $6)`, 
+      [newsData.party, newsData.news, newsData.date, newsData.source, newsData.latitude, newsData.longitude]
+    );
+    res.status(200).json({message: "Hi from backend: news saved successfully"});
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ error: 'Hi from backend: failed to save news' });
+  }
+})
 
 // Reverse geocoding endpoint
 app.post('/api/reverse-geocode', async (req, res) => {

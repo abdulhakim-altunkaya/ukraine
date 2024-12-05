@@ -1,9 +1,19 @@
+.newsWriteDiv {
+    width: 100%;
+    background-color: red;
+}
+
 .newsWriteForm{
     width: 50%;
+    background-color: blue;
+    padding: 25px;
 }
 
 .newsWriteForm div {
     display: flex;
     flex-direction: row;
+    justify-content:space-between;
     width: 50%;
+    background-color: green;
+    border: 2px solid white;
 }

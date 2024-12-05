@@ -8,11 +8,11 @@ function NewsWrite() {
   const [reporter, setReporter] = useState("");
   const [party, setParty] = useState("");
   const [newsText, setNewsText] = useState("");
-  const [datetime, setDatetime] = useState(null);
+  const [datetime, setDatetime] = useState("");
   const [source, setSource] = useState("");
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-  const [resultArea, setResultArea] = useState(null);
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+  const [resultArea, setResultArea] = useState("");
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,9 +28,8 @@ function NewsWrite() {
         longitude,
       };
       console.log(newsObject);
-
-/*       const res = await axios.post("http://localhost:5000/api/save-news", newsObject);
-      setResponse(res.data.message); */
+      const res = await axios.post("http://localhost:5000/api/save-news", newsObject);
+      setResultArea(res.data.message);
     } catch (error) {
       console.log(error.message)
 /*       if (error.response) {
@@ -44,11 +43,11 @@ function NewsWrite() {
   }
 
   return (
-    <div>
+    <div className="newsWriteDiv">
       <form className="newsWriteForm" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="inputParty">Party:</label>
-          <input className="inputFields" type="text" id="inputParty" 
+          <input className="inputFields" type="number" id="inputParty" 
             value={party} onChange={(e) => setParty(e.target.value)} required />
         </div>
         <div>
