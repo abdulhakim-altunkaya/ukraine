@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
+import DisplayNav from "./DisplayNav";
+import DisplayMap from "./DisplayMap";
 
 function MainMapNav() {
   return (
     <div className='mainMapNav'>
-      <div>MainMapNav</div>
-
+      <DisplayNav/>
+      <DisplayMap userLatitude2={56.9496} userLongitude2={24.1052}/>
     </div>
   )
 }

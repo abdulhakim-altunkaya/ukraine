@@ -37,11 +37,38 @@
     height: 100vh; /* Ensures it spans the full viewport height */
     /* Hide scrollbar */
     scrollbar-width: none; /* For Firefox */
+    display: flex;
+    flex-direction: column;
   }
+  .mainMapNav {
+    width: 80%;
+    background-color: blue;
+    overflow-y: auto;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+  }
+  .navContainerDiv {
+      flex: 0 0 15%; /* Fixed height: 15% of the parent */
+      background-color: lightgray;
+  }
+  .mapContainerDiv {
+      flex: 0 0 85%; /* Fixed height: 85% of the parent */
+      background-color: white;
+      position: relative; /* Positioning for map container */
+      overflow: hidden; /* Prevents map overflow */
+  }
+  #map {
+      width: 100%; /* Full width of the container */
+      height: 100%; /* Full height of the container */
+      position: absolute; /* Prevents map from resizing flex container */
 
+  }
   .mainMapNav::-webkit-scrollbar {
     display: none; /* For Chrome, Safari, and Edge */
   }
+
+  
   .mainNews {
     width: 20%;
     background-color: white;
