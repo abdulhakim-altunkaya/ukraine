@@ -42,17 +42,11 @@
   .mainMapNav::-webkit-scrollbar {
     display: none; /* For Chrome, Safari, and Edge */
   }
-  .mainMapNav div {
-    height: 60px;
-  }
   .mainNews {
     width: 20%;
-    background-color: red;
+    background-color: white;
     overflow-y: auto; /* Enables vertical scrolling */
     height: 100vh; /* Ensures it spans the full viewport height */
-  }
-  .mainNews div {
-    height: 60px;
   }
 }
 

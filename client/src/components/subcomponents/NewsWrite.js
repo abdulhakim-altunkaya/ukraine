@@ -31,14 +31,13 @@ function NewsWrite() {
       const res = await axios.post("http://localhost:5000/api/save-news", newsObject);
       setResultArea(res.data.message);
     } catch (error) {
-      console.log(error.message)
-/*       if (error.response) {
-        setResponse(error.response.data.message);
+      if (error.response) {
+        setResultArea(error.response.data.message);
         console.log(error.message);
       } else {
-        setResponse("An error happened while saving the news");
+        setResultArea("An error happened while saving the news");
         console.log(error.message);
-      } */
+      }
     }
   }
 

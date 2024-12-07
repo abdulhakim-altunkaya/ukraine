@@ -51,6 +51,26 @@ app.post("/api/save-news", async (req, res) => {
     console.log(error.message);
     res.status(500).json({ error: 'Hi from backend: failed to save news' });
   }
+});
+
+//Fetch news from DB
+app.get("/api/get-news", async (req, res) => {
+  let client;
+  try {
+    client = await pool.connect();
+    const result = await client.query(
+      `SELECT * FROM ukraine_news ORDER BY date DESC LIMIT 30`)
+    const allNews = await result.rows;
+    if(!allNews) {
+      return res.status(404).json({message: "Hi from backend: Request to DB successful but somehow no news returned"});
+    }
+    res.status(200).json(allNews);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({message: "Hi from backend: error while fetching news"});
+  } finally {
+    if(client) client.release();
+  }
 })
 
 // Reverse geocoding endpoint

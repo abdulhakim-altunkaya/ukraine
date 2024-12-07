@@ -1,0 +1,15 @@
+.eachNewsContainer {
+    margin: 10px;
+    padding: 5px;
+    background-color: #bdbdc1;
+    border-radius: 7px;
+    font-family: "Concert One";
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth animation */
+}
+
+.eachNewsContainer:hover {
+    transform: translateY(4px); /* Slides the container down */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4); /* Darker shadow for hover effect */
+    cursor: pointer; /* Changes cursor to pointer */
+}
