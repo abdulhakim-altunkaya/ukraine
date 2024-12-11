@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import MapComponent from './subcomponents/MapComponent';
+//We will get focus coordianates from Zustand and Zustand will grab it from MainNews component news clicks
+import useStore from '../store/useStore';
 
-const DisplayMap = ({ userLatitude2, userLongitude2 }) => {
-    const [latitude, setLatitude] = useState(56.9496); // Default latitude (Riga)
-    const [longitude, setLongitude] = useState(24.1052); // Default longitude
+const DisplayMap = () => {
+
+    //Get the coordinates before the useEffect 
+    const zustandLatitude = useStore((state) => state.latitude);
+    const zustandLongitude = useStore((state) => state.longitude);
+    const zustandZoomLevel = useStore((state) => state.zoomLevel);
+
+    const [dynamicLat, setDynamicLat] = useState(zustandLatitude);
+    const [dynamicLon, setDynamicLon] = useState(zustandLongitude);
+    const [dynamicZoom, setDynamicZoom] = useState(zustandZoomLevel);
 
     useEffect(() => {
-        // Update latitude and longitude whenever props change
-        if (userLatitude2 !== null && userLongitude2 !== null) {
-            setLatitude(userLatitude2);
-            setLongitude(userLongitude2);
-        }
-    }, [userLatitude2, userLongitude2]);
+        setDynamicLat(parseFloat(zustandLatitude));
+        setDynamicLon(parseFloat(zustandLongitude));
+        setDynamicZoom(Number(zustandZoomLevel));
+        // Perform any additional actions you need when the values change
+    }, [zustandLatitude, zustandLongitude, zustandZoomLevel]);
 
     return (
         <div className='mapContainerDiv'>
             {/* Pass the updated latitude and longitude to the MapComponent */}
-            <MapComponent latitude={latitude} longitude={longitude} />
+            <MapComponent latitude={dynamicLat} longitude={dynamicLon} zoomLevel={dynamicZoom} />
         </div>
     );
 };

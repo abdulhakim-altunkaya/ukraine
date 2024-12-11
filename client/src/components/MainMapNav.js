@@ -12,7 +12,7 @@ function MainMapNav() {
       <Routes>
         <Route path="/about" element={<About/>} />
         <Route path="/donation" element={<Donation/>} />
-        <Route path="*" element={<DisplayMap userLatitude2={56.9496} userLongitude2={24.1052}/>} />
+        <Route path="*" element={<DisplayMap />} />
       </Routes>
       
     </div>
