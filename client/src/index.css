@@ -13,7 +13,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Monda:wght@700&family=Righteous&display=swap');/*Monda*/
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');/*Maven Pro*/
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap'); /*Nunito*/
-/*Nunito Maven Pro Righteous Monda Concert One Courgette Fredoka One Lobster Nerko One Poppins Playwrite HU*/
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');/*Paytone One*/
+/*Nunito Maven Pro Righteous Monda Concert One Courgette Fredoka One Lobster Nerko One Paytone One Poppins Playwrite HU*/
 
 /* Media query for big screens */
 @media (min-width: 781px) {
@@ -29,17 +30,6 @@
     height: 100vh;
     background-color: green;
   }
-
-  .mainMapNav {
-    width: 80%;
-    background-color: blue;
-    overflow-y: auto; /* Enables vertical scrolling */
-    height: 100vh; /* Ensures it spans the full viewport height */
-    /* Hide scrollbar */
-    scrollbar-width: none; /* For Firefox */
-    display: flex;
-    flex-direction: column;
-  }
   .mainMapNav {
     width: 80%;
     background-color: blue;
@@ -49,11 +39,38 @@
     flex-direction: column; /* Stack children vertically */
   }
   .navContainerDiv {
-      flex: 0 0 15%; /* Fixed height: 15% of the parent */
-      background-color: lightgray;
+      flex: 0 0 5%; /* Fixed height: 15% of the parent */
+      background-color:  #00203FFF;
+      color: #ADEFD1FF;
+      display: flex;
+      flex-direction: row;
+      align-items: center; 
+      border-bottom: 4px solid #ff8000;
+      z-index: 1; /* Ensure it appears above other elements */
+  }
+  .navTitleButton, .navAboutButton, .navDonationButton{
+    padding-left: 25px;
+    padding-right: 25px;
+    height: 100%;
+    display: flex; /* Enable flexbox for button content */
+    align-items: center; /* Vertically center content inside buttons */
+    justify-content: center; /* Optional: Center content horizontally */
+    min-width: 150px;
+  }
+  .navTitleButton:hover, .navAboutButton:hover, .navDonationButton:hover{
+    cursor: pointer;
+    background-color:  #ADEFD1FF;
+    color: #00203FFF;
+  }
+  .navTitleButton {
+    font-family: "Paytone One";
+    font-size: 25px;
+  }
+  .navAboutButton, .navDonationButton{
+    font-size: 19px;
   }
   .mapContainerDiv {
-      flex: 0 0 85%; /* Fixed height: 85% of the parent */
+      flex: 0 0 95%; /* Fixed height: 85% of the parent */
       background-color: white;
       position: relative; /* Positioning for map container */
       overflow: hidden; /* Prevents map overflow */
