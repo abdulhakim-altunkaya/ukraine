@@ -4,43 +4,48 @@ import 'leaflet/dist/leaflet.css';
 import '../../styles/map.css';
 import '@fortawesome/fontawesome-free/css/all.css'; // Import FontAwesome CSS
 
+const geoJsonFiles = [
+    { name: 'Region 1', file: require('../geojson/region1.json'), color: 'red' },
+    { name: 'Region 2', file: require('../geojson/region2.json'), color: 'blue' },
+];
 
 const MapComponent = ({ latitude, longitude, zoomLevel }) => {
-
     const mapRef = useRef(null); // Reference for the map container
+    const mapInstanceRef = useRef(null); // Reference for the Leaflet map instance
 
     useEffect(() => {
-        if (!mapRef.current) {
-            // Initialize the map if it hasn't been created yet
-            const map = L.map('map').setView([latitude, longitude], zoomLevel); // Adjust zoom level for a broader view
+        if (!mapInstanceRef.current) {
+            // Initialize the map instance
+            const map = L.map(mapRef.current).setView([latitude, longitude], zoomLevel);
 
-            // Carto Voyager tiles
+            // Add base tile layer
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+                attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
                 subdomains: 'abcd',
                 maxZoom: 19,
-            }).addTo(map);        
-            
-            // Create a custom icon using FontAwesome
-            const customIcon = L.divIcon({
-                className: 'custom-div-icon', // Custom class for styling
-                html: '<i class="fas fa-map-marker-alt" style="color: red; font-size: 32px;"></i>', // FontAwesome icon
-                iconSize: [30, 42], // Optional size of the icon
-                iconAnchor: [15, 42], // Anchor point of the icon
+            }).addTo(map);
+
+            // Dynamically load GeoJSON files
+            geoJsonFiles.forEach(({ name, file, color }) => {
+                L.geoJSON(file, {
+                    style: {
+                        color: color, // Border color
+                        fillColor: color, // Fill color
+                        fillOpacity: 0.5, // Transparency
+                    },
+                })
+                    .bindPopup(name) // Optional: Display name of the region
+                    .addTo(map);
             });
 
-            // Add marker at initial position with the custom icon
-            const marker = L.marker([latitude, longitude], { icon: customIcon }).addTo(map);
-            mapRef.current = { map, marker };
+            mapInstanceRef.current = map; // Save the map instance
         } else {
-            // Update map view and marker position when coordinates change
-            const { map, marker } = mapRef.current;
-            map.setView([latitude, longitude], zoomLevel); // Adjust zoom level for a broader view
-            marker.setLatLng([latitude, longitude]);
+            // Update the map view when props change
+            mapInstanceRef.current.setView([latitude, longitude], zoomLevel);
         }
-    }, [latitude, longitude]);
+    }, [latitude, longitude, zoomLevel]);
 
-    return <div id="map" ></div>;
+    return <div id="map" ref={mapRef} style={{ height: '100vh', width: '100%' }}></div>;
 };
 
 export default MapComponent;

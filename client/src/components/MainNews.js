@@ -38,9 +38,9 @@ function MainNews() {
   }
   
   return (
-    <div className='mainNews'>
+    <div className='mainNews'> 
       {listNews.map((record, index) =>(
-        <div className='eachNewsContainer' 
+        <div className='eachNewsContainer'  
           onClick={() => changeCoordinates(record.latitude, record.longitude)} 
           key={index}>
           <div>{record.party} - {record.date}</div>

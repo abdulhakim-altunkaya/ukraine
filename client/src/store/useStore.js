@@ -3,7 +3,7 @@ import { create } from 'zustand'; // Use named import
 
 const useStore = create((set) => ({
   // New state for latitude and longitude
-  latitude: 48.3794, // Default value
+  latitude: 45.3794, // Default value
   longitude: 31.1656, // Default value
   zoomLevel: 6,
 

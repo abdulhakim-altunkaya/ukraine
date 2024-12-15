@@ -88,7 +88,7 @@
   
   .mainNews {
     width: 20%;
-    background-color: white;
+    background-color: #e0e0e0;
     overflow-y: auto; /* Enables vertical scrolling */
     height: 100vh; /* Ensures it spans the full viewport height */
   }
@@ -96,28 +96,5 @@
 
 /* Media query for small screens */
 @media (max-width: 780px) {
-  body {
-    margin: 0;
-    background-color: lightyellow;
-    font-family: 'Trebuchet MS';
-  } 
-
-  .mainArea {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: green;
-  }
-
-  .mainMapNav {
-    width: 100%;
-    background-color: blue;
-    height: 50%; /* Ensures it spans the full viewport height */
-  }
-  .mainNews {
-    width: 100%;
-    background-color: red;
-    height: 50%;
-    overflow-y: auto; /* Enables vertical scrolling */
-  }
+ 
 }
