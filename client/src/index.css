@@ -29,6 +29,7 @@
     flex-direction: row;
     height: 100vh;
     background-color: green;
+    margin-bottom: 10px;
   }
   .mainMapNav {
     width: 80%;
